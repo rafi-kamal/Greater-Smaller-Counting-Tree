@@ -8,8 +8,8 @@ template <class Data>
 class Node {
 	Data data;
 	int subTreeSize;		// Number of nodes in the subtree
-	int count;				// If there are multiple nodes with same 'data' value, we don't create
-							// duplicate nodes. Instead, we increase 'count' by 1.
+	int count;			// If there are multiple nodes with same 'data' value, we don't create
+					// duplicate nodes. Instead, we increase 'count' by 1.
 	Node<Data>* leftNode;
 	Node<Data>* rightNode;
 	
@@ -18,7 +18,7 @@ public:
 	~Node();
 	void insert(Data value);
 	int query(Data value, QueryType queryType);		// Count how many nodes in its
-													// subtree are greater / smaller then "value"
+								// subtree are greater / smaller then "value"
 };
 
 template <class Data>
@@ -70,7 +70,7 @@ int Node<Data>::query(Data value, QueryType queryType) {
 		if (queryType == Greater || queryType == GreaterOrEqual) {
 			if (rightNode != NULL)
 				result += rightNode->subTreeSize;	// All the nodes in the right subtree are greater than 'value'
-			result += count;						// This node is also greater than 'value'
+			result += count;				// This node is also greater than 'value'
 		}
 	}
 	else if (value > data) {
@@ -79,7 +79,7 @@ int Node<Data>::query(Data value, QueryType queryType) {
 		if (queryType == Smaller || queryType == SmallerOrEqual) {
 			if (leftNode != NULL)
 				result += leftNode->subTreeSize;	// All the nodes in the left subtree are greater than 'value'
-			result += count;						// This node is also smaller than 'value'
+			result += count;				// This node is also smaller than 'value'
 		}
 	}
 	else {
